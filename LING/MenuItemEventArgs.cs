@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace LING
 {
-    public class MenuItemEventArgs
+    public class MenuItemEventArgs : EventArgs
     {
+        public int ItemId { get; set; }
     }
 }

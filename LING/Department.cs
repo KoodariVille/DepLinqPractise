@@ -8,17 +8,17 @@ namespace LING
 {
     public class Department
     {
-        int Id { get; set; }
-        string Name { get; set; }
-        List<Employee> Employees { get; set; }
-        int EmployeeCount => Employees.Count;
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public List<Employee> Employees { get; set; }
+        public int EmployeeCount => Employees.Count;
 
-        Department()
+        public Department()
         {
             Employees = new List<Employee>();
         }
 
-        Department(int id, string name) : this() {
+        public Department(int id, string name) : this() {
             Id = id;
             Name = name;
         }

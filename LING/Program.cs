@@ -10,7 +10,7 @@ namespace LING
     {
         static void Main(string[] args)
         {
-
+            Application.Run();
         }
     }
 }

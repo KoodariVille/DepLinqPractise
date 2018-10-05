@@ -8,5 +8,15 @@ namespace LING
 {
     public class MenuItem
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public event EventHandler<MenuItemEventArgs> ItemSelected;
+
+        public void Select()
+        {
+            ItemSelected.Invoke(this, new MenuItemEventArgs { ItemId = Id });
+        }
+
+        public override string ToString() => $"{Id} {Name}"; 
     }
 }

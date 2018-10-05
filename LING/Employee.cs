@@ -9,15 +9,15 @@ namespace LING
     public class Employee
     {
         private double _salary;
-        int Id { get; }
-        string FirstName { get; set; }
-        string LastName { get; set; }
-        Department Department { get; set; }
-        DateTime StartDate { get; set; }
-        DateTime? EndDate { get; set; } 
-        DateTime? DateOfBirth { get; set; }
-        string Name => $"{FirstName} {LastName}";
-        int Age => (DateOfBirth == null) ? 0: (int)((DateTime.Now - DateOfBirth)?.TotalDays / 365.2421875);
+        public int Id { get; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public Department Department { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime? EndDate { get; set; } 
+        public DateTime? DateOfBirth { get; set; }
+        public string Name => $"{FirstName} {LastName}";
+        public int Age => (DateOfBirth == null) ? 0: (int)((DateTime.Now - DateOfBirth)?.TotalDays / 365.2421875);
         public Double Salary{
             set
             {
@@ -35,5 +35,18 @@ namespace LING
             }
             get => Math.Round(_salary, 2);
         }
+
+        public Employee(int id, string first, string last, DateTime dob, double salary)
+        {
+            Id = id;
+            FirstName = first;
+            LastName = last;
+            DateOfBirth = dob;
+            Salary = salary;
+            StartDate = DateTime.Now;
+            EndDate = null;
+        }
+
+        public override string ToString() => $"{Id} {FirstName} {LastName}";
     }
 }
