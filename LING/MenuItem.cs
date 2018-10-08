@@ -14,7 +14,7 @@ namespace LING
 
         public void Select()
         {
-            ItemSelected.Invoke(this, new MenuItemEventArgs { ItemId = Id });
+            ItemSelected(this, new MenuItemEventArgs { ItemId = Id });
         }
 
         public override string ToString() => $"{Id} {Name}"; 

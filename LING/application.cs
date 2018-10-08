@@ -17,7 +17,7 @@ namespace LING
             //otsikkorivit
             WriteLine();
             WriteLine(Menu.Where(mi => mi.Id == itemid).First().Name.ToUpper());
-            WriteLine("‐".PadRight(18 * result[0].GetType().GetProperties().Length + 2, '‐'));
+            WriteLine("-".PadRight(18 * result[0].GetType().GetProperties().Length + 2, '-'));
             //sarakeotsikkorivit
             if (result.Count > 0)
             {
@@ -28,7 +28,7 @@ namespace LING
                 }
                 WriteLine(row);
             }
-            WriteLine("‐".PadRight(18 * result[0].GetType().GetProperties().Length + 2, '‐'));
+            WriteLine("-".PadRight(18 * result[0].GetType().GetProperties().Length + 2, '-'));
             //datarivit
             foreach (object item in result)
             {
@@ -77,6 +77,7 @@ namespace LING
 
             Menu[2].ItemSelected += (obj, a) =>
             {
+                Write("Anna sukunimi: ");
                 string snimi = ReadLine();
                 var result = Data.Employees
                 .Where(e => snimi == e.LastName)
@@ -90,7 +91,7 @@ namespace LING
                 var result = Data.Departments.SelectMany(d => d.Employees,
                     (d, e) => new { Osasto = d.Name, Palkka = e.Salary })
                     .GroupBy(e => e.Osasto)
-                    .Select(e => new { Osasto = e.Key, Maksimipalkka = e.Max() })
+                    .Select(e => new { Osasto = e.Key, Maksimipalkka = e.Max(x => x.Palkka) })
                     .ToList();
                 WriteResult(a.ItemId, result);
             };
@@ -109,7 +110,12 @@ namespace LING
             Menu[5].ItemSelected += (obj, a) =>
             {
                 var result = Data.Departments
-                .Select(e => new { Nimi = e.Name, Alle30v = e.Employees.Count})
+                .Select(e => new {
+                    Nimi = e.Name,
+                    Alle30v = e.Employees.Where(x => x.Age < 30).Count(),
+                    Välillä30_50v = e.Employees.Where(x => x.Age <= 50 || x.Age >= 30).Count(),
+                    Yli50v = e.Employees.Where(x => x.Age > 50).Count()
+                })
                 .ToList();
                 WriteResult(a.ItemId, result);
             };
@@ -120,7 +126,7 @@ namespace LING
             Data.GenerateData();
             InitializeMenu();         
         }
-        
+
         public static int ReadFromMenu()
         {
             System.Console.Clear();
@@ -140,15 +146,25 @@ namespace LING
                 return k;
             }         
         }
-
+        
         public static void Run()
         {
+            bool kysely = true;
             Initialize();
-            while(ReadFromMenu() != 0)
+            do
             {
+
                 int i = ReadFromMenu();
-                Menu[i].Select();
-            }
+                if (i == 0)
+                {
+                    kysely = false;
+                }
+                else
+                {
+                    Menu[i-1].Select();
+                }
+
+            } while (kysely == true);
         }
     }
 }

@@ -1,0 +1,7 @@
+D:\OmatOhjelmoinnit\LING\LING\bin\Debug\LING.exe.config
+D:\OmatOhjelmoinnit\LING\LING\bin\Debug\LING.exe
+D:\OmatOhjelmoinnit\LING\LING\bin\Debug\LING.pdb
+D:\OmatOhjelmoinnit\LING\LING\obj\Debug\LING.csprojResolveAssemblyReference.cache
+D:\OmatOhjelmoinnit\LING\LING\obj\Debug\LING.csproj.CoreCompileInputs.cache
+D:\OmatOhjelmoinnit\LING\LING\obj\Debug\LING.exe
+D:\OmatOhjelmoinnit\LING\LING\obj\Debug\LING.pdb
